@@ -1,0 +1,32 @@
+import React from "react";
+
+class AppButton extends React.Component {
+  render() {
+    return (
+	<button 
+style={{"color": this.props.color}}
+onClick={()=>this.props.mohit("Called from AppButton->" + this.props.abc)} >Click me</button>
+    );
+  }
+}
+
+class AppPosts extends React.Component {
+  render() {
+    return (
+      <tr>
+        <td>
+	<AppButton mohit={this.props.saksham} abc={this.props.Pid + "-->" + this.props.body} />
+<br/>
+	<button onClick={()=>this.props.saksham("Called from AppPosts")} >AppPosts</button>
+<br/>
+		 {this.props.Pid+"---->"+this.props.Uid} 
+	</td>
+        <td>
+		 {this.props.body} 
+	</td>
+      </tr>
+    );
+  }
+}
+
+export default AppPosts;
