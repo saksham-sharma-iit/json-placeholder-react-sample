@@ -3,90 +3,76 @@ import "./App.css";
 
 import AppPosts from './AppPosts.js';
 
-class App extends React.Component {
+class AppPreNext extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            posts: [],
-            users: {},
-            line: ''
-        };
-        this.testF = this.testF.bind(this);
-        this.change = this.change.bind(this);
-    }
+	constructor(props) {
+		super(props);
+		this.state = {
+			posts: [],
+			currentPostIndex: 0
+		};	
+		this.testF = this.testF.bind(this);
+		this.increaseIndex = this.increaseIndex.bind(this);
+		this.decreaseIndex = this.decreaseIndex.bind(this);
+	}
+	increaseIndex(){
+		let i = this.state.currentPostIndex;
+		this.setState({currentPostIndex: i + 1});
+	}
+	decreaseIndex(){
+		let i = this.state.currentPostIndex;
+		if ( i < 1){
+			return;
+		}
+		this.setState({currentPostIndex: i-1});
+	}
+	testF(data){
+		console.log("testF called");
+		console.log(data);	
+	}
 
-    change(str) {
-        this.setState({ line: str });
-    }
+	componentDidMount(){	
+		fetch('https://jsonplaceholder.typicode.com/posts')
+		  .then(response => response.json())
+		  .then((posts)=>{
+				this.setState({posts});
+			});
+	}
 
-    testF(data) {
-        console.log("testF called");
-        console.log(data);
-    }
+  render() {
+	console.log("render users count:" + this.state.posts.length + " ==>" + (new Date()));
+	// let postsDivs = [];
 
+	let postDiv = null;
 
-    componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(response => response.json())
-            .then((posts) => {
-                this.setState({ posts: posts });
-            });
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(response => response.json())
-            .then((users) => {
-                console.log(JSON.stringify(users));
-                let usersMap = {};
-                for (let i = 0; i < users.length; i++) {
-                    let user = users[i];
-                    usersMap[user.id] = user;
-                }
-                this.setState({ users: usersMap });
-            });
-    }
+	if(this.state.posts.length>0 && this.state.posts.length > this.state.currentPostIndex 
+			&& this.state.currentPostIndex >= 0){
+		let post = this.state.posts[this.state.currentPostIndex];
+		postDiv = <AppPosts 
+					key={post.id} 
+				 	Uid={post.userId} 
+					postId={post.id}
+					post={post} 
+					body={post.body}  />;
+	}
+		// postsDivs.push(postDiv);
+	// }
+	// let post = this.state.posts[this.state.currentPostIndex];
+    return (
+      <div className="App">
+        {/* <header className="App-header">
+         	<button onClick={()=>this.testF("Testing")} > Check Button </button>
+        </header> */}
+		{/* <button onClick={()=>} > prev </button> */}
+		<button onClick={()=>this.decreaseIndex()} disabled={this.state.currentPostIndex==0} > prev </button>
+		<button onClick={()=>this.increaseIndex()} > next </button>
 
-    render() {
-        //console.log("render users count:" + this.state.posts.length + " ==>" + (new Date()));
-        let postsDivs = [];
-
-        let postDiv = null;
-
-        for (let i = 0; i < this.state.posts.length; i++) {
-            let post = this.state.posts[i];
-            let user = this.state.users[post.userId];
-            //let user = a.get(post.userId);
-
-            if (!post.body.includes(this.state.line))
-                continue;
-            postDiv = < AppPosts
-            key = { post.id }
-            Uid = { post.userId }
-            post = { post }
-            body = { post.body }
-            user = { user }
-            />;
-            postsDivs.push(postDiv);
-        }
-
-        // postsDivs.push(postDiv);
-        return ( <
-            div className = "App" > {
-                /* <header className="App-header">
-                         	<button onClick={()=>this.testF("Testing")} > Check Button </button>
-                        </header> */
-            } { /* <button onClick={()=>} > prev </button> */ } <
-            input type = 'text'
-            onChange = {
-                (e) => this.change(e.target.value) }
-            />
-
-            { postsDivs.length } <
-            br / > { postsDivs }
-
-            <
-            /div>
-        );
-    }
+		
+		{postDiv}
+		
+      </div>
+    );
+  }
 }
 
-export default App;
+export default AppPreNext;
