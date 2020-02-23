@@ -2,27 +2,15 @@ var services = {
 
 	usersMap: {},
 	
-	getUsers: function(){
-		fetch(
-			"https://jsonplaceholder.typicode.com/users")
-        .then(response => response.json())
-        .then(users => {
-                for (let i = 0; i < users.length; i++) {
-                    let user = users[i];
-                    services.usersMap[user.id] = user;
-                }
-        	});
-	},
-
 	getUser: function(userId, callback){
-		if(services.usersMap[userId] != undefined){
+		if(services.usersMap[userId] !== undefined){
 			console.log("Returing user from cache");
 			callback(services.usersMap[userId]);
 			return;
 		}
 		if(localStorage !== undefined){
 			let user = localStorage.getItem("user:" + userId);
-			if(user != undefined){
+			if(user !== undefined){
 				console.log("Returing user from browser cache");
 				user = JSON.parse(user);
         		services.usersMap[userId] = user; 
@@ -43,16 +31,32 @@ var services = {
         	});
 
 	},
-
+	
+	getPosts: function(callback){
+		fetch('https://jsonplaceholder.typicode.com/posts')
+		  .then(response => response.json())
+		  .then((posts)=>{
+				callback(posts);
+			});
+	},
+	
+	getPostsFromUser: function(userId, callback){
+		fetch('https://jsonplaceholder.typicode.com/posts?userId='+userId)
+		  .then(response => response.json())
+		  .then((posts)=>{
+				callback(posts);
+			});
+	},
+	
 	getComments: function(postId, callback){
 		console.log("fetching comments " + postId);
+		
 		fetch(
 			"https://jsonplaceholder.typicode.com/comments?postId=" + postId)
         .then(response => response.json())
         .then(comments => {
         		callback(comments); 
         	});
-
 	},
 
 };

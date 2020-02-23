@@ -1,4 +1,4 @@
-.App {
+.AppStyle {
   /* text-align: center; */
   padding: 20px;
 }
@@ -38,10 +38,10 @@
   }
 }
 
-.posts{
+.posts {
   align: center;
   background: beige;
   margin: 10px;
-  border: 1px solid black; 
+  border: 1px solid black;
   padding: 20px;
 }
