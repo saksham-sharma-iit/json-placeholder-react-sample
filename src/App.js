@@ -11,7 +11,9 @@ import AppAllPosts from "./AppAllPosts";
 class App extends React.Component {
   render() {
     return (
-      <Router>
+      <Router 
+      basename="json-placeholder-react-sample"
+      >
         <div className="AppStyle">
           <Nav activeKey="/">
             <Nav.Item>
