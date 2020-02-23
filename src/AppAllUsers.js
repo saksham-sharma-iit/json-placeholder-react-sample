@@ -1,5 +1,7 @@
 import React from "react";
 import "./App.css";
+import AppUser from "./AppUser";
+import { Jumbotron } from "react-bootstrap";
 
 class AppAllUsers extends React.Component {
   constructor(props) {
@@ -22,22 +24,19 @@ class AppAllUsers extends React.Component {
     let userDiv = null;
     for (let i = 0; i < this.state.users.length; i++) {
       let user = this.state.users[i];
-      userDiv = (
-        <div key={"userDiv:" + i}>
-          <p style={{ font: "Arial" }}>
-            <i>{user.id}</i>
-            <br />
-            <br />
-            {user.name} {"(" + user.email + ")"}
-            <br />
-          </p>
-          <hr></hr>
-        </div>
-      );
+      userDiv = <AppUser user={user} key={i} />;
       userDivs.push(userDiv);
     }
 
-    return <div className="posts">{userDivs}</div>;
+    return (
+      <div className="App">
+        <Jumbotron>
+          <table>
+            <tbody>{userDivs}</tbody>
+          </table>
+        </Jumbotron>
+      </div>
+    );
   }
 }
 

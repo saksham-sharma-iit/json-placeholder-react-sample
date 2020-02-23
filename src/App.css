@@ -37,7 +37,18 @@
     transform: rotate(360deg);
   }
 }
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 15px;
+}
 
+.users,
 .posts {
   align: center;
   background: beige;

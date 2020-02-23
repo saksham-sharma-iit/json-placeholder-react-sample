@@ -2,15 +2,18 @@ import React from "react";
 import "./App.css";
 
 import AppPosts from "./AppPosts.js";
+import services from "./services";
+import { Spinner, Jumbotron } from "react-bootstrap";
 
 class AppAllPosts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       posts: [],
       line: ""
     };
-    this.testF = this.testF.bind(this);
+    this.setPosts = this.setPosts.bind(this);
     this.change = this.change.bind(this);
   }
 
@@ -18,17 +21,31 @@ class AppAllPosts extends React.Component {
     this.setState({ line: str });
   }
 
-  testF(data) {
-    console.log("testF called");
-    console.log(data);
+  setPosts(posts) {
+    if (this._mounted) {
+      this.setState({ posts: posts, loading: false });
+    }
   }
 
   componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then(response => response.json())
-      .then(posts => {
-        this.setState({ posts: posts });
-      });
+    let hash = window.location.hash;
+    let search = hash.substring(hash.indexOf("?") + 1);
+    let urlParams = new URLSearchParams(search);
+    // console.log(JSON.stringify(urlParams));
+    let userIdSearched = urlParams.get("userId");
+    // console.log("userIdSearched->" + userIdSearched);
+
+    if (userIdSearched) {
+      services.getPostsFromUser(userIdSearched, this.setPosts);
+    } else {
+      services.getPosts(this.setPosts);
+    }
+
+    this._mounted = true;
+  }
+
+  componentWillUnmount() {
+    this._mounted = false;
   }
 
   render() {
@@ -54,10 +71,21 @@ class AppAllPosts extends React.Component {
       postsDivs.push(postDiv);
     }
 
+    if (this.state.loading) {
+      postsDivs = <Spinner animation="border" />;
+    }
+
     return (
       <div className="App">
-        <input type="text" onChange={e => this.change(e.target.value)} />
-        {postsDivs.length} <br /> {postsDivs}
+        <input
+          type="text"
+          placeholder="Search post"
+          onChange={e => this.change(e.target.value)}
+        />
+        <br />
+        Number of Posts: {postsDivs.length}
+        <br />
+        <Jumbotron>{postsDivs}</Jumbotron>
       </div>
     );
   }

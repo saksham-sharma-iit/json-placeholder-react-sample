@@ -4,21 +4,21 @@ var services = {
 	
 	getUser: function(userId, callback){
 		if(services.usersMap[userId] !== undefined){
-			console.log("Returing user from cache");
+			// console.log("Returing user from cache");
 			callback(services.usersMap[userId]);
 			return;
 		}
 		if(localStorage !== undefined){
 			let user = localStorage.getItem("user:" + userId);
 			if(user){
-				console.log("Returing user from browser cache");
+				// console.log("Returing user from browser cache");
 				user = JSON.parse(user);
         		services.usersMap[userId] = user; 
 				callback( user );
 				return;
 			}
 		}
-		console.log("fetching user " + userId);
+		// console.log("fetching user " + userId);
 		fetch(
 			"https://jsonplaceholder.typicode.com/users/" + userId)
         .then(response => response.json())
@@ -49,7 +49,7 @@ var services = {
 	},
 	
 	getComments: function(postId, callback){
-		console.log("fetching comments " + postId);
+		// console.log("fetching comments " + postId);
 		
 		fetch(
 			"https://jsonplaceholder.typicode.com/comments?postId=" + postId)
