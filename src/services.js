@@ -10,7 +10,7 @@ var services = {
 		}
 		if(localStorage !== undefined){
 			let user = localStorage.getItem("user:" + userId);
-			if(user !== undefined){
+			if(user){
 				console.log("Returing user from browser cache");
 				user = JSON.parse(user);
         		services.usersMap[userId] = user; 

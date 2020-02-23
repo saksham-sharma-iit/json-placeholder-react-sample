@@ -44,7 +44,7 @@ class AppPosts extends React.Component {
     }
 
     let userDiv = null;
-    if (this.state.user !== undefined && this.state.user !== null) {
+    if (this.state.user) {
       userDiv = (
         <p style={{ font: "Arial" }}>
           <i>
