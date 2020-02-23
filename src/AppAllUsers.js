@@ -23,14 +23,16 @@ class AppAllUsers extends React.Component {
     for (let i = 0; i < this.state.users.length; i++) {
       let user = this.state.users[i];
       userDiv = (
-        <p style={{ font: "Arial" }}>
-          <i>{user.id}</i>
-          <br />
-          <br />
-          {user.name} {"(" + user.email + ")"}
-          <br />
+        <div key={"userDiv:" + i}>
+          <p style={{ font: "Arial" }}>
+            <i>{user.id}</i>
+            <br />
+            <br />
+            {user.name} {"(" + user.email + ")"}
+            <br />
+          </p>
           <hr></hr>
-        </p>
+        </div>
       );
       userDivs.push(userDiv);
     }

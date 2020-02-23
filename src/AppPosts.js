@@ -48,7 +48,7 @@ class AppPosts extends React.Component {
       userDiv = (
         <p style={{ font: "Arial" }}>
           <i>
-            {this.props.post.id} {this.state.user.name}{" "}
+            {this.props.post.id} {this.state.user.name}
             {"(" + this.state.user.email + ")"}
           </i>
         </p>

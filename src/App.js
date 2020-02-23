@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import { Nav } from "react-bootstrap";
 import AppAllUsers from "./AppAllUsers.js";
@@ -15,13 +15,13 @@ class App extends React.Component {
         <div className="AppStyle">
           <Nav activeKey="/">
             <Nav.Item>
-              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/#/">Home</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/posts">All Posts</Nav.Link>
+              <Nav.Link href="/#/posts">All Posts</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/users"> All users</Nav.Link>
+              <Nav.Link href="/#/users"> All users</Nav.Link>
             </Nav.Item>
           </Nav>
           <hr />

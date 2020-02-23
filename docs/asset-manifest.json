@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/json-placeholder-react-sample/static/css/main.3ffa98b7.chunk.css",
+    "main.js": "/json-placeholder-react-sample/static/js/main.7beb0f1f.chunk.js",
+    "main.js.map": "/json-placeholder-react-sample/static/js/main.7beb0f1f.chunk.js.map",
+    "runtime-main.js": "/json-placeholder-react-sample/static/js/runtime-main.fdd6d3a7.js",
+    "runtime-main.js.map": "/json-placeholder-react-sample/static/js/runtime-main.fdd6d3a7.js.map",
+    "static/css/2.47e06e2e.chunk.css": "/json-placeholder-react-sample/static/css/2.47e06e2e.chunk.css",
+    "static/js/2.1fb26a5c.chunk.js": "/json-placeholder-react-sample/static/js/2.1fb26a5c.chunk.js",
+    "static/js/2.1fb26a5c.chunk.js.map": "/json-placeholder-react-sample/static/js/2.1fb26a5c.chunk.js.map",
+    "index.html": "/json-placeholder-react-sample/index.html",
+    "precache-manifest.86d2dc0fa6a91f734f0075c3a0c29202.js": "/json-placeholder-react-sample/precache-manifest.86d2dc0fa6a91f734f0075c3a0c29202.js",
+    "service-worker.js": "/json-placeholder-react-sample/service-worker.js",
+    "static/css/2.47e06e2e.chunk.css.map": "/json-placeholder-react-sample/static/css/2.47e06e2e.chunk.css.map",
+    "static/css/main.3ffa98b7.chunk.css.map": "/json-placeholder-react-sample/static/css/main.3ffa98b7.chunk.css.map",
+    "static/js/2.1fb26a5c.chunk.js.LICENSE.txt": "/json-placeholder-react-sample/static/js/2.1fb26a5c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fdd6d3a7.js",
+    "static/css/2.47e06e2e.chunk.css",
+    "static/js/2.1fb26a5c.chunk.js",
+    "static/css/main.3ffa98b7.chunk.css",
+    "static/js/main.7beb0f1f.chunk.js"
+  ]
+}
